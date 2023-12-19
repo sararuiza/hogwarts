@@ -1,6 +1,6 @@
 @font-face {
   font-family: font;
-  src: url(../media/Hamlet-Cicero12.otf);
+  src: url(../media/HARRYP__.TTF);
 }
 
 body {
@@ -12,11 +12,37 @@ body {
 header {
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-h4 {
+h1 {
   font-family: "font";
   font-size: 5rem;
+  position: absolute;
+  color: white;
+  text-shadow: 0 0 1rem black;
+  animation: zoom 3s ease forwards;
+  transform: perspective(1000px);
+}
+
+button{
+  position: absolute;
+  background-color: gray;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: 50%;
+  z-index: 100;
+  top: 0;
+  right: 0;
+}
+ 
+audio + button i{
+  color: white;
+  font-size: 2rem;
 }
 
 video {
@@ -24,4 +50,14 @@ video {
   object-position: center;
   width: 100vw;
   height: 100vh;
+}
+
+
+@keyframes zoom {
+  from{
+    transform: scale(0) rotateY(0);
+  }
+  to{
+    transform: scale(2) rotateY(360deg);
+  }
 }
