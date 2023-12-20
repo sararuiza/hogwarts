@@ -3,37 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!--Styles-->
     <link rel="stylesheet" href="/css/resert.css" />
     <link rel="stylesheet" href="/css/home.css" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
 
     <title>Hogwarts</title>
-    <meta name="description" content="Embark on a magical journey with Hogwarts Adventure, an interactive web experience inspired by the world of Harry Potter.">
-    
+    <meta
+      name="description"
+      content="Embark on a magical journey with Hogwarts Adventure, an interactive web experience inspired by the world of Harry Potter."
+    />
+
     <!--Scripts-->
-    <script defer src="./js/media.js" ></script>
+    <script defer src="./js/media.js"></script>
   </head>
 
   <body>
     <header>
       <!-- AUDIO -->
       <audio autoplay loop id="bgAudio">
-        <source src="./media/hedwigsTheme.mp3" type="audio/mp3">
+        <source src="./media/hedwigsTheme.mp3" type="audio/mp3" />
         Tu navegador no soporta el elemento de audio.
       </audio>
       <button id="muteButton">
-        <i class='bx bx-volume-mute'></i>
+        <i class="bx bx-volume-mute"></i>
       </button>
 
       <!-- VIDEO -->
       <video autoplay muted loop id="bgVideo">
-        <source src="./media/background.mp4" type="video/mp4">
+        <source src="./media/background.mp4" type="video/mp4" />
         Tu navegador no soporta el elemento de video.
       </video>
-
       <h1>SARA</h1>
+
+      <!-- Primera vista despues del play -->
     </header>
+
+    <div class="play">
+      <div class="personaje"></div>
+      <div class="texto"></div>
+    </div>
+
+    <script src="./js/textos.js"></script>
   </body>
 </html>
