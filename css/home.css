@@ -3,6 +3,12 @@
   src: url(../media/HARRYP__.TTF);
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow: hidden;
+
+}
+
 body {
   width: 100vw;
   height: 200vh;
@@ -27,6 +33,19 @@ h1 {
   text-shadow: 0 0 1rem black;
   animation: zoom 3s ease forwards;
   transform: perspective(1000px);
+}
+
+header a{
+  color: white;
+  position: absolute;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 2rem;
+  transform: translateY(7rem);
+  border: .1rem solid white;
+  border-radius: .5rem;
+  padding: 1%;
+
 }
 
 button{
@@ -57,7 +76,11 @@ video {
 .play{
   width: 100vw;
   height: 100vh;
-  background-color: brown;
+  background-image: url(../media/personajes/salon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+  filter: grayscale(50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,19 +88,16 @@ video {
 }
 
 .personaje{
-background-color: rgb(43, 226, 153);
+background-image: url("../media/personajes/zyro-image.png");
 width: 20%;
 height: 20%;
 align-self: flex-start;
 margin-left: 10%;
 }
 
-.texto{
-  background-color: rgb(216, 148, 60);
-  width: 80%;
-  height: 30%;
 
-}
+
+
 
 
 @keyframes zoom {

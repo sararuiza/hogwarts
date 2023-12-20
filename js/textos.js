@@ -1,10 +1,26 @@
+//CONSTANTES
 const textoMaquina = document.querySelector(".texto");
+const inicioMaquina = document.querySelector("header a");
+const rollo = document.querySelectorAll(".rollo");
 
-const palabras = ["hola como estas"];
+//EVENTOS
+inicioMaquina.addEventListener("click", () => {
+  textoMaquina.classList.add("textoAbierto");
+  rollo[0].classList.add("rolloCerrado");
+  rollo[1].classList.add("rolloCerrado");
 
-let currentIndex = 0;
+  setTimeout(() => {
+    maquinaEscribir(
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, tenetur assumenda iste non cupiditate quo et impedit dignissimos perferendis quos?"
+    );
+  }, 3000);
+});
 
-function maquinaEscribir() {
+//FUNCIONES
+function maquinaEscribir(texto) {
+  let palabras = [texto];
+  let currentIndex = 0;
+
   textoMaquina.textContent = ""; //esto se hizo por que en el index habia un texto por defecto, entonces el objetivo es que este vacio
   let textArr = palabras[currentIndex];
   textArr = textArr.split(""); // split lo que hace es separar por un caracter es comun puede ser coma o punto, pero si no le pongo nada, separa letra por letra
@@ -19,5 +35,3 @@ function maquinaEscribir() {
     }
   }, 200); //tiempo para escribir las letras
 }
-
-maquinaEscribir();
