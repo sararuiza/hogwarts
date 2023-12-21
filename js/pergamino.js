@@ -1,8 +1,8 @@
-//CONSTANTES
-const textoMaquina = document.querySelector(".texto");
-const textoArea = document.querySelector('.texto__area')
-const inicioMaquina = document.querySelector("header a");
+//SELECTORES 
 const rollo = document.querySelectorAll(".rollo");
+const textoArea = document.querySelector(".texto__area");
+const textoMaquina = document.querySelector(".texto");
+const inicioMaquina = document.querySelector("header a");
 
 //EVENTOS
 inicioMaquina.addEventListener("click", () => {

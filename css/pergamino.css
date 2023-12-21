@@ -1,7 +1,7 @@
 :root {
   --color1: #e6c07f;
   --color2: #dab475;
-  --color3: #c6a062;
+  --color3: #b18743;
   --color4: #704218;
   --color5: #512c09;
 }
@@ -13,6 +13,7 @@
   justify-content: center;
   align-items: center;
   filter: grayscale(0%);
+  overflow: hidden;
 }
 
 .rollo {
@@ -28,6 +29,12 @@
   background-size: 100% 100%;
   border-radius: 1rem 1rem 1rem 1rem / .3rem .3rem .3rem .3rem;
   transition: 2.8s linear;
+  transform: translateX(-8%);
+}
+
+.rollo:first-child{
+  transform: translateX(8%);
+
 }
 
 .rollo::before,.rollo::after {
@@ -63,14 +70,15 @@
   display: flex;
   align-items: center;
   background-color: var(--color2);
+  box-shadow: inset 0 0 .4rem .2rem var(--color4);
   transition: 3s ease-out ;
-  padding: 10px;
+  padding: 0 1rem;
 }
 
 .texto {
   font-size: 2rem;
   height: 50%;
-  width: 100%;
+  width: 120%;
 }
 
 .textoAbierto{
