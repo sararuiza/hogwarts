@@ -3,6 +3,7 @@
   --color2: #dab475;
   --color3: #c6a062;
   --color4: #704218;
+  --color5: #512c09;
 }
 
 .pergamino {
@@ -16,21 +17,20 @@
 
 .rollo {
   position: relative;
-  width: 10rem;
+  width: 8rem;
   height: 70%;
   background-color: blue;
-  background-image: linear-gradient(
-    90deg,
-    var(--color3),
-    var(--color1) 20%,
-    var(--color3) 80%
-  );
+  background: linear-gradient(90deg, 
+    var(--color3) 0%,   /* desde el inicio (0%) */
+    var(--color1) 30% 70%,  /* desde el 30% hasta el 70% */
+    var(--color3)100%  /* desde el 70% hasta el final (100%) */
+);
   background-size: 100% 100%;
-  border-radius: 5px;
-  transition: 3s linear;
+  border-radius: 1rem 1rem 1rem 1rem / .3rem .3rem .3rem .3rem;
+  transition: 2.8s linear;
 }
 
-.rollo::before {
+.rollo::before,.rollo::after {
   content: "";
   width: 50%;
   height: 10%;
@@ -38,32 +38,39 @@
   position: absolute;
   top: -10%;
   left: 25%;
-  border-radius: 5px;
+  border-radius: 1rem 1rem 0 0 / .2rem .2rem 0 0;
+  background: linear-gradient(90deg, 
+  var(--color5) 0%,   
+  var(--color4) 40% 60%,  
+  var(--color5) 80% 100%  
+);
 }
 
 .rollo::after {
-  content: "";
-  width: 50%;
-  height: 10%;
-  background-color: #704218;
-  position: absolute;
+  top: unset;
   bottom: -10%;
   left: 25%;
-  border-radius: 5px;
+  border-radius: 0 0 1rem 1rem / 0 0 .2rem .2rem;
 }
 
 .rolloCerrado{
     width: 5rem;
 }
 
-
-.texto {
-  background-color: rgb(216, 148, 60);
+.texto__area{
   width: 0%;
   height: 50%;
-  background-color: var(--color1);
+  display: flex;
+  align-items: center;
+  background-color: var(--color2);
   transition: 3s ease-out ;
   padding: 10px;
+}
+
+.texto {
+  font-size: 2rem;
+  height: 50%;
+  width: 100%;
 }
 
 .textoAbierto{

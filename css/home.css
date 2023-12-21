@@ -3,16 +3,22 @@
   src: url(../media/HARRYP__.TTF);
 }
 
+@font-face {
+  font-family: font-feather;
+  src: url(../media/Hamlet-Tertia18.otf);
+}
+
 html {
   scroll-behavior: smooth;
   overflow: hidden;
-
 }
 
 body {
   width: 100vw;
   height: 200vh;
   overflow-x: hidden;
+  font-family: font-feather;
+  background-color: black;
 }
 
 header {
@@ -36,33 +42,38 @@ h1 {
 }
 
 header a{
-  color: white;
+  color: black;
   position: absolute;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 2rem;
+  font-size: 1.8rem;
   transform: translateY(7rem);
-  border: .1rem solid white;
-  border-radius: .5rem;
+  border: .2rem ridge var(--color5);
+  background-color: var(--color3);
+  border-radius: 1rem 0 1rem 0 / .5rem 0 .5rem 0;
+  box-shadow: inset 0 0 .4rem var(--color4);
   padding: 1%;
 
 }
 
 button{
   position: absolute;
-  background-color: gray;
+  background-color: var(--color5);
   cursor: pointer;
   width: 3rem;
   height: 3rem;
   border: none;
-  border-radius: 50%;
+  border: .3rem ridge var(--color5);
+  background-color: var(--color4);
+  border-radius: 10%;
+  box-shadow: inset 0 0 .4rem var(--color4), 0 0 .4rem var(--color1);
   z-index: 100;
-  top: 0;
+  bottom: 0;
   right: 0;
 }
  
 audio + button i{
-  color: white;
+  color: var(--color5);
   font-size: 2rem;
 }
 
@@ -80,7 +91,6 @@ video {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom center;
-  filter: grayscale(50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,11 +104,6 @@ height: 20%;
 align-self: flex-start;
 margin-left: 10%;
 }
-
-
-
-
-
 
 @keyframes zoom {
   from{

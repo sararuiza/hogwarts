@@ -1,11 +1,12 @@
 //CONSTANTES
 const textoMaquina = document.querySelector(".texto");
+const textoArea = document.querySelector('.texto__area')
 const inicioMaquina = document.querySelector("header a");
 const rollo = document.querySelectorAll(".rollo");
 
 //EVENTOS
 inicioMaquina.addEventListener("click", () => {
-  textoMaquina.classList.add("textoAbierto");
+  textoArea.classList.add("textoAbierto");
   rollo[0].classList.add("rolloCerrado");
   rollo[1].classList.add("rolloCerrado");
 
@@ -33,5 +34,5 @@ function maquinaEscribir(texto) {
     if (i == textArr.length) {
       clearInterval(pintarString);
     }
-  }, 200); //tiempo para escribir las letras
+  }, 50); //tiempo para escribir las letras
 }
