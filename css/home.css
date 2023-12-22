@@ -20,8 +20,8 @@ html {
 
 body {
   width: 100vw;
-  height: 200vh;
-  overflow-x: hidden;
+  height: 100vh;
+  overflow: hidden;
   font-family: font-feather;
   background-color: black;
 }
@@ -63,7 +63,7 @@ h1 {
   transform: perspective(1000px);
 }
 
-header #play{
+header #start{
   cursor: pointer;
   color: black;
   position: relative;
@@ -113,27 +113,6 @@ video {
   width: 100vw;
   height: 100vh;
   transform-origin: 55% 90%;
-}
-
-.play{
-  width: 100vw;
-  height: 100vh;
-  background-image: url(../media/personajes/salon.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.personaje{
-background-image: url("../media/personajes/zyro-image.png");
-width: 20%;
-height: 20%;
-align-self: flex-start;
-margin-left: 10%;
 }
 
 @keyframes zoom {

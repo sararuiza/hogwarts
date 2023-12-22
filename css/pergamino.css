@@ -6,6 +6,34 @@
   --color5: #512c09;
 }
 
+.play{
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../media/personajes/salon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transition: 1s ease;
+  z-index: 0;
+}
+
+.appear{
+  opacity: 1;
+}
+
+.personaje{
+  background-image: url("../media/personajes/zyro-image.png");
+  width: 20%;
+  height: 20%;
+  align-self: flex-start;
+  margin-left: 10%;
+}
+
 .pergamino {
   width: 80%;
   height: 50%;
@@ -34,7 +62,6 @@
 
 .rollo:first-child{
   transform: translateX(8%);
-
 }
 
 .rollo::before,.rollo::after {

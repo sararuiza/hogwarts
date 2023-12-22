@@ -4,12 +4,12 @@ const textoArea = document.querySelector(".texto__area");
 const textoMaquina = document.querySelector(".texto");
 const inicioMaquina = document.querySelector("header a");
 
+
 //EVENTOS
 inicioMaquina.addEventListener("click", () => {
   textoArea.classList.add("textoAbierto");
   rollo[0].classList.add("rolloCerrado");
   rollo[1].classList.add("rolloCerrado");
-
   setTimeout(() => {
     maquinaEscribir(
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, tenetur assumenda iste non cupiditate quo et impedit dignissimos perferendis quos?"
