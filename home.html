@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Atrapa la Snitch Dorada</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+  * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #171717;
+      overflow: hidden; /* Evita el desbordamiento de contenido fuera de la ventana */
+    }
+
+    .container {
+      position: relative;
+      width: 80px; /* Ajusta el tamaño del contenedor */
+      height: 60px;
+    }
+
+    .snitch {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      cursor: pointer;
+      animation: snitchAnimation 1s steps(14) infinite;
+      border-radius: 50%;
+      background-size: contain; /* Escala la imagen para que se ajuste completamente al contenedor */
+    }
+
+    @keyframes snitchAnimation {
+      0% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-0.png'); }
+      7.1% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-1.png'); }
+      14.2% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-2.png'); }
+      21.3% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-3.png'); }
+      28.4% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-4.png'); }
+      35.5% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-5.png'); }
+      42.6% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-6.png'); }
+      49.7% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-7.png'); }
+      56.8% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-8.png'); }
+      63.9% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-9.png'); }
+      71% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-10.png'); }
+      78.1% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-11.png'); }
+      85.2% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-12.png'); }
+      92.3% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-13.png'); }
+      100% { background-image: url('/the_golden_snitch_-_the_magical_bird.png/b641ad6975ef4437eaf29efd8d8aefd5gKNX7CCGKlTfnjNj-0.png'); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="snitch" id="snitch"></div>
+  </div>
+     <lord-icon
+        src="https://cdn.lordicon.com/gjlgchju.json"
+        trigger="hover"
+        style="width:250px;height:250px">
+    </lord-icon>
+
+  <script>
+    const snitch = document.getElementById('snitch');
+    let timer;
+    let speed = 2000; // Tiempo de aparición inicial en milisegundos
+
+    function getRandomPosition() {
+      const x = Math.floor(Math.random() * window.innerWidth);
+      const y = Math.floor(Math.random() * window.innerHeight);
+      return { x, y };
+    }
+
+    function setNewPosition() {
+      const newPos = getRandomPosition();
+      snitch.style.left = `${newPos.x}px`;
+      snitch.style.top = `${newPos.y}px`;
+    }
+
+    function calculateDistance(x1, y1, x2, y2) {
+      const xDist = x2 - x1;
+      const yDist = y2 - y1;
+      return Math.sqrt(xDist * xDist + yDist * yDist);
+    }
+
+    function updateSpeed(distance) {
+      // Modificar la velocidad dependiendo de la distancia
+      if (distance < 100) {
+        speed = 1000;
+      } else if (distance < 200) {
+        speed = 2000;
+      } else {
+        speed = 3000;
+      }
+    }
+
+    function moveSnitch() {
+      setNewPosition();
+      timer = setTimeout(moveSnitch, speed);
+    }
+
+    snitch.addEventListener('click', () => {
+      clearTimeout(timer);
+      alert('¡Has atrapado la Snitch Dorada!');
+      moveSnitch();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      const snitchRect = snitch.getBoundingClientRect();
+      const snitchX = snitchRect.left + snitchRect.width / 2;
+      const snitchY = snitchRect.top + snitchRect.height / 2;
+
+      const distance = calculateDistance(mouseX, mouseY, snitchX, snitchY);
+      updateSpeed(distance);
+    });
+
+    moveSnitch(); // Comienza el movimiento inicial de la Snitch
+  </script>
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+</body>
+</html>
