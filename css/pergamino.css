@@ -52,6 +52,32 @@
   z-index: 10;
 }
 
+
+.error-message {
+  font-family: "font";
+  font-size: 30px;
+  text-align: center;
+  color: #000000;
+  background-color: var(--color1);
+  border-radius: 1.2rem 0 1.2rem 0 / 2rem 0 2rem 0 ;
+  font-family: font-feather;
+  font-size: 2rem;
+  text-align: center;
+  text-transform: capitalize;
+  border: .2rem ridge var(--color3);
+
+  padding: 25px;
+  border-radius: 21px;
+  visibility: visible;
+  display: none;
+  margin-bottom: -57px;
+  width: 200px;
+  position: absolute;
+  top: 99px;
+  left: 700px;
+  /* transform: translate(-50%, -50%); */
+  z-index: 15;
+}
 .rollo {
   position: relative;
   width: 7rem;
@@ -142,3 +168,4 @@ input::placeholder{
   color: var(--color2);
   opacity: .5;
 }
+
