@@ -3,7 +3,19 @@ const rollo = document.querySelectorAll(".rollo");
 const textoArea = document.querySelector(".texto__area");
 const textoMaquina = document.querySelector(".texto");
 const inicioMaquina = document.querySelector("#start");
+const pergamino = document.querySelector('.pergamino')
 
+let me = { name: undefined, 
+        age: undefined, 
+        family: undefined, 
+        qualities: undefined, 
+        lineage: undefined, 
+        house: undefined, 
+        animalPatronus: undefined}
+
+const inputText = document.createElement('input')
+inputText.placeholder = 'Mi nombre es...'
+inputText.classList.add('input')
 
 //EVENTOS
 inicioMaquina.addEventListener("click", () => {
@@ -11,20 +23,28 @@ inicioMaquina.addEventListener("click", () => {
     textoArea.classList.add("textoAbierto");
     rollo[1].classList.add("rolloCerrado");
     rollo[0].classList.add("rolloCerrado");
+    maquinaEscribir("",true)
     maquinaEscribir(
       "¡Bienvenido a Hogwarts joven alma!"
-      );
+      ,false);
       setTimeout(()=>{
         maquinaEscribir("mi nombre es Albus Dumbledore...")
         setTimeout(()=>{
           maquinaEscribir("¿Cúal es tu nombre?...")
+          pergamino.insertAdjacentElement('afterend',inputText)
         },3000)
       },3000)
   }, 3000);
 });
 
 //FUNCIONES
-function maquinaEscribir(texto) {
+
+function maquinaEscribir(texto,clean=false) {
+  if(clean){
+    textoMaquina.innerHTML = ''
+    return
+  }
+
   let palabras = [texto];
   let currentIndex = 0;
 
@@ -42,3 +62,6 @@ function maquinaEscribir(texto) {
   }, 50); //tiempo para escribir las letras
   textoMaquina.innerHTML += '<br>'
 }
+
+
+// Story... 
