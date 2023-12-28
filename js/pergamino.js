@@ -2,8 +2,12 @@
 const rollo = document.querySelectorAll(".rollo");
 const textoArea = document.querySelector(".texto__area");
 const textoMaquina = document.querySelector(".texto");
-const inicioMaquina = document.querySelector("#start");
+const start = document.querySelector("#start");
 const pergamino = document.querySelector('.pergamino')
+
+
+// Inputs TEMPORALES
+const inputText = document.createElement('input');
 
 let me = {
   name: undefined,
@@ -15,29 +19,27 @@ let me = {
   animalPatronus: undefined
 };
 
-const inputText = document.createElement('input');
 inputText.placeholder = 'Mi nombre es...';
 inputText.classList.add('input');
 
 
-inicioMaquina.addEventListener("click", () => {
+start.addEventListener("click", () => {
   setTimeout(() => {
     textoArea.classList.add("textoAbierto");
     rollo[1].classList.add("rolloCerrado");
     rollo[0].classList.add("rolloCerrado");
     maquinaEscribir("", true);
-    maquinaEscribir(
-      "¡Bienvenido a Hogwarts joven alma!",
-      false
-    );
+    maquinaEscribir("¡Bienvenido a Hogwarts joven alma!",false);
     setTimeout(() => {
       maquinaEscribir("mi nombre es Albus Dumbledore...");
       setTimeout( async () => {
         maquinaEscribir("¿Cuál es tu nombre?...");
         pergamino.insertAdjacentElement('afterend', inputText);
-        me.name = await validar(inputText)
-        console.log(me.name);
-
+        me.name = await validar(inputText) ;
+        inputText.style.animation = 'big-zoom .4s ease-out forwards '
+        setTimeout(()=>{
+          inputText.remove()
+        },400)
       }, 3000);
     }, 3000);
   }, 3000);
