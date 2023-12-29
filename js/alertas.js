@@ -1,39 +1,67 @@
+
+
 function validar(input) {
-  return new Promise(resolve => {
-    input.addEventListener('keydown', (event) => {
-      // Aquí van las validaciones del señor Emanuel
-
-      if (event.key === 'Enter') {
-        resolve(input.value);
-      }
+    return new Promise(resolve => {
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          const inputValue = input.value;
+          const containsNumbers = /\d/.test(inputValue);
+  
+          if (containsNumbers) {
+            mostrarAlertaPersonalizada('¡Solo se permiten letras!');
+            return;
+          }
+  
+          resolve(inputValue);
+          console.log(inputValue);
+        }
+      });
     });
-  });
-}
-
-
-
-
-inputText.addEventListener('keydown', function(event) {
-if (event.key === 'Enter') {
-    event.preventDefault(); // Evita que se agregue el salto de línea por defecto
-
-    // Lógica para obtener el valor del input y verificar si contiene números
-    const inputValue = inputText.value;
-    const containsNumbers = /\d/.test(inputValue); // Verifica si hay números
-
-    if (containsNumbers) {
-    mostrarAlertaPersonalizada('¡Solo se permiten letras!');
-
-    return; // Detener el flujo si se ingresan números
+  }
+  
+  function validarEdad(input) {
+    return new Promise(resolve => {
+      input.addEventListener('input', () => {
+        const inputValue = input.value;
+        const containsNonNumbers = /\D/.test(inputValue); // Verificar si hay caracteres que no sean números
+  
+        if (containsNonNumbers) {
+          mostrarAlertaPersonalizada('¡Solo se permiten números para la edad!');
+          return;
+        }
+  
+        resolve(inputValue);
+        console.log(inputValue);
+      });
+    });
+  }
+  
+  
+  inputText.addEventListener('keydown', async function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+  
+      const inputValue = inputText.value;
+      const containsNumbers = /\d/.test(inputValue);
+  
+      if (containsNumbers) {
+        mostrarAlertaPersonalizada('¡Solo se permiten letras!');
+        return;
+      }
+  
+      if (!validarLetras(inputText)) {
+        mostrarAlertaPersonalizada('¡Solo se permiten letras!');
+        return;
+      }
+  
+      me.name = inputValue;
+      // Resto de la lógica...
     }
-
-    // Si solo hay letras, puedes continuar con la lógica deseada aquí
-    // Por ejemplo, asignar el valor a la propiedad 'name' del objeto 'me'
-    me.name = inputValue;
-
-    // Lógica adicional o acciones a realizar después de validar y procesar el valor
-}
-});
+  });
+  
+  
+  
+  
   
   
   function validarLetras(input) {
@@ -44,53 +72,62 @@ if (event.key === 'Enter') {
       mensajeError.textContent = "Solo se permiten letras!";
       mostrarError('mensajeErrorLetras');
       input.value = input.value.slice(0, -1); // Elimina el último carácter
+      return false;
     } else {
       mensajeError.innerHTML = "";
+      return true;
     }
   }
   
-  // Función para validar solo números
-function validarNumeros(input) {
-    var regex = /^\d+$/;
-    var mensajeError = document.getElementById("mensajeErrorNumeros");
-
-    if (!regex.test(input.value)) {
-        mensajeError.innerHTML = "Solo se permiten números!";
-        mostrarError('mensajeErrorNumeros');
-        input.value = input.value.replace(/\D/g, ''); // Elimina los caracteres que no son números
-    } else {
-        mensajeError.innerHTML = "";
-    }
-}
-
+    
+    // Función para validar solo números
+  function validarNumeros(input) {
+      var regex = /^\d+$/;
+      var mensajeError = document.getElementById("mensajeErrorNumeros");
   
-  // Función para mostrar alertas personalizadas en un contenedor específico
-function mostrarAlertaPersonalizada(mensaje) {
-    const alerta = document.createElement('p');
-    alerta.className = 'error-message';
-
-    // Aplicar estilos y contenido a la alerta
-    alerta.textContent = mensaje;
-
-    // Insertar la alerta dentro del pergamino
-    pergamino.appendChild(alerta);
-
-    // Mostrar la alerta
-    alerta.style.display = 'block';
-
-    // Ocultar la alerta después de cierto tiempo
-    setTimeout(function() {
-        alerta.style.display = 'none';
-        alerta.remove(); // Eliminar la alerta del DOM
-    }, 2000); // Ocultar la alerta después de 2 segundos (ajusta este tiempo según tus necesidades)
-}
-  
-  // Función para mostrar errores con alertas personalizadas
-  function mostrarError(elemento) {
-    var errorElemento = document.getElementById(elemento);
-    errorElemento.classList.add('error-message');
-  
-    const mensajeError = errorElemento.innerHTML;
-    mostrarAlertaPersonalizada(mensajeError);
+      if (!regex.test(input.value)) {
+          mensajeError.innerHTML = "Solo se permiten números!";
+          mostrarError('mensajeErrorNumeros');
+          input.value = input.value.replace(/\D/g, ''); // Elimina los caracteres que no son números
+      } else {
+          mensajeError.innerHTML = "";
+      }
   }
   
+    
+    // Función para mostrar alertas personalizadas en un contenedor específico
+    function mostrarAlertaPersonalizada(mensaje) {
+      const alerta = document.createElement('p');
+      alerta.className = 'error-message';
+      alerta.textContent = mensaje;
+      document.body.appendChild(alerta);
+    
+      alerta.style.display = 'block';
+      const fondoOpaco = document.querySelector('.fondo-opaco');
+      fondoOpaco.style.display = 'block';
+    
+      setTimeout(() => {
+        fondoOpaco.style.opacity = 1;
+      }, 100);
+    
+      setTimeout(function() {
+        alerta.style.opacity = 0;
+        setTimeout(() => {
+          alerta.style.display = 'none';
+          alerta.remove();
+    
+          fondoOpaco.style.opacity = 0;
+          setTimeout(() => {
+            fondoOpaco.style.display = 'none';
+          }, 100);
+        }, 500); // Cambiar este tiempo para ajustar la duración de la alerta
+      }, 2000); // Cambiar este tiempo para ajustar el tiempo de visualización de la alerta
+    }
+    
+    function mostrarError(elemento) {
+      var errorElemento = document.getElementById(elemento);
+      errorElemento.classList.add('error-message');
+    
+      const mensajeError = errorElemento.innerHTML;
+      mostrarAlertaPersonalizada(mensajeError);
+    }
