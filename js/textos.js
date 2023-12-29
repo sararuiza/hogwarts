@@ -1,0 +1,3 @@
+function ruleta(me){
+    
+}

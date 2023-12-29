@@ -12,7 +12,6 @@ function validar(input) {
 
 
 
-
 inputText.addEventListener('keydown', function(event) {
 if (event.key === 'Enter') {
     event.preventDefault(); // Evita que se agregue el salto de línea por defecto

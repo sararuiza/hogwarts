@@ -1,13 +1,15 @@
 // SELECTORES 
 const rollo = document.querySelectorAll(".rollo");
+const personaje = document.querySelector('.personaje')
 const textoArea = document.querySelector(".texto__area");
 const textoMaquina = document.querySelector(".texto");
 const start = document.querySelector("#start");
 const pergamino = document.querySelector('.pergamino')
 
-
 // Inputs TEMPORALES
 const inputText = document.createElement('input');
+const div = document.createElement('div');
+
 
 let me = {
   name: undefined,
@@ -28,8 +30,8 @@ inputText.classList.add('input');
 start.addEventListener("click", () => {
   setTimeout(() => {
     swichPergamino()
-    
     maquinaEscribir("¡Bienvenido a Hogwarts joven alma!",true);
+    personaje.style.animation = 'patinar 3s ease-out'
     setTimeout(() => {
       maquinaEscribir("mi nombre es Albus Dumbledore...");
       setTimeout( async () => {
@@ -39,20 +41,23 @@ start.addEventListener("click", () => {
         inputText.style.animation = 'big-zoom .4s ease-out forwards '
         setTimeout(async ()=>{
           inputText.remove()
-          maquinaEscribir(`Hola ${(me.name).toUpperCase()} ¿Cual es tu edad?`, true)
+          maquinaEscribir(`Hola ${(me.name)[0].toUpperCase() + (me.name).slice(1) } ¿Cual es tu edad?`, true)
           inputText.style.animation = ''
           inputText.placeholder = 'Mi edad es...';
           pergamino.insertAdjacentElement('afterend', inputText);
           inputText.value= ""
-           me.edad = await validar(inputText) ;
+          me.edad = await validar(inputText);
+          inputText.remove()
+          personaje.classList.add('opacity0','personajeAbajo')
+          personaje.classList.remove('opacity0')
           inputText.style.animation = 'big-zoom .4s ease-out forwards'
+          pergamino.classList.add('pergaminoArriba')
           maquinaEscribir(" ", true)
-
           swichPergamino()
-
+          ruleta()
         },400)
-      }, 3000);
-    }, 3000);
+      }, 2000);
+    }, 2000);
   }, 3000);
 });
 
@@ -60,6 +65,29 @@ function elegirCarta(){
     swichPergamino()
 }
 
+function ruleta(){
+  setTimeout(()=>{
+    maquinaEscribir('Elige una de las 3 cartas...',true)
+    const contenedorFlotante = document.createElement('div')
+    contenedorFlotante.classList.add('contenedorFilas')
+    linages.forEach(e => {
+      const div = document.createElement('div');
+      const h4 = document.createElement('h4')
+      div.appendChild(h4)
+      div.classList.add('carta')
+      h4.textContent = `${e}`; // Contenido para identificar cada div
+      div.addEventListener('click', function() {
+        div.classList.add('cartaFlip')
+        me.lineage = e
+        console.log(me.lineage);
+      });
+      contenedorFlotante.appendChild(div); // Ajusta según tu necesidad
+      document.body.appendChild(contenedorFlotante)
+    });
+
+
+  },3000)
+}
 
 function swichPergamino(){
   if(textoArea.classList.contains("textoAbierto")){
@@ -77,11 +105,7 @@ function swichPergamino(){
     rollo[0].classList.add("rolloCerrado");
     
   }
-
 }
-
-
-
 
 
 function maquinaEscribir(texto, clean = false) {
