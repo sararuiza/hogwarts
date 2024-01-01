@@ -3,50 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./media/wand.ico" type="image/x-icon">
 
     <!--Styles-->
     <link rel="stylesheet" href="/css/resert.css" />
     <link rel="stylesheet" href="/css/home.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-
     <link rel="stylesheet" href="/css/pergamino.css">
+    <link rel="stylesheet" href="/css/click.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
     <title>Hogwarts</title>
-    <meta
-      name="description"
-      content="Embark on a magical journey with Hogwarts Adventure, an interactive web experience inspired by the world of Harry Potter."
-    />
+    <meta name="description" content="Embark on a magical journey with Hogwarts Adventure, an interactive web experience inspired by the world of Harry Potter." />
 
     <!--Scripts-->
 
   </head>
   <body>
-    <div class="fondo-opaco"></div>
-
-    <div class="wand">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 11.839 11.345 C 28.137 -12.66 67.891 32.841 109.364 100.657 C 126.642 130.036 138.327 109.676 161.824 153.717 C 186.444 206.956 347.392 295.099 359.541 322.689 C 365.915 349.795 344.957 347.947 320.058 348.353 C 288.418 345.42 241.812 282.834 147.935 202.507 C 95.61 157.734 77.092 89.893 47.783 54.026 C 27.728 29.484 0.813 34.608 11.839 11.345 Z"/>
-        <path d="M 383.739 477.576 C 408.343 485.784 449.498 460.836 448.133 443.038 C 444.386 399.276 394.867 351.549 387.132 330.539 C 375.652 299.356 356.693 251.602 347.538 280.248 C 338.514 296.879 318 341.545 329.461 359.596 C 329.387 359.675 356.579 474.957 383.739 477.576 Z" />
-      </svg>
-    </div>
+    <!-- AUDIO -->
+    <audio autoplay loop muted id="bgAudio">
+      <source src="./media/hedwigsTheme.mp3" type="audio/mp3" />
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button id="muteButton">
+      <i class="bx bx-volume-full"></i>
+    </button>
     <header>
 
-      <!--Mascara solicitud de click-->
-      <div class="click__wave">
-
-      </div>
-
-      <!-- AUDIO -->
-      <audio autoplay loop id="bgAudio">
-        <source src="./media/hedwigsTheme.mp3" type="audio/mp3" />
-        Tu navegador no soporta el elemento de audio.
-      </audio>
-      <button id="muteButton">
-        <i class="bx bx-volume-mute"></i>
-      </button>
 
       <!-- VIDEO -->
       <video autoplay muted loop id="bgVideo">
@@ -77,8 +59,9 @@
    
     
  
+    <script type="module" src="./js/audio.js" ></script>
+    <script type="module" src="./js/header.js"></script>
     <script src="./js/alertas.js" ></script>
-    <script src="./js/header.js"></script>
     <script src="./js/pergamino.js"></script> 
 
   </body>

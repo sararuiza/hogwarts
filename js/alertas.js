@@ -19,6 +19,20 @@ function validar(input) {
     });
   }
   
+// recibe un elemento indefinido y una asignacion, en el momento es que el elemnto deja de ser indefinido se resuleve la promesa
+
+  function continuar(element){
+    return new Promise(resolve =>{
+      setInterval(()=>{
+        if(element != undefined){
+          resolve(element)
+        } else(
+          console.log('pensando...')
+        )
+      },1000)
+    })
+  }
+  
   function validarEdad(input) {
     return new Promise(resolve => {
       input.addEventListener('input', () => {
@@ -35,30 +49,6 @@ function validar(input) {
       });
     });
   }
-  
-  
-  inputText.addEventListener('keydown', async function(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-  
-      const inputValue = inputText.value;
-      const containsNumbers = /\d/.test(inputValue);
-  
-      if (containsNumbers) {
-        mostrarAlertaPersonalizada('¡Solo se permiten letras!');
-        return;
-      }
-  
-      if (!validarLetras(inputText)) {
-        mostrarAlertaPersonalizada('¡Solo se permiten letras!');
-        return;
-      }
-  
-      me.name = inputValue;
-      // Resto de la lógica...
-    }
-  });
-  
   
   
   

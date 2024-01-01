@@ -10,7 +10,6 @@ const pergamino = document.querySelector('.pergamino')
 const inputText = document.createElement('input');
 const div = document.createElement('div');
 
-
 let me = {
   name: undefined,
   age: undefined,
@@ -22,6 +21,26 @@ let me = {
 };
 
 let linages = ["mestizo", "sangre pura","muggle"]
+
+
+const apellidosHarryPotter = [
+  "Potter",
+  "Weasley",
+  "Malfoy",
+  "Black",
+  "Longbottom",
+  "Dursley",
+  "Granger",
+  "Lovegood",
+  "Crouch",
+  "Tonks",
+];
+
+function desordenar(array){
+  array = array.sort(function() {return Math.random() - 0.5});
+}
+
+linagesDesorden = desordenar(linages)
 
 inputText.placeholder = 'Mi nombre es...';
 inputText.classList.add('input');
@@ -56,10 +75,12 @@ start.addEventListener("click", () => {
               }
 
               me.age = inputValue;
-              ageInput.remove();
+              ageInput.style.animation = 'big-zoom .4s ease-out forwards';
+              setTimeout(()=>{
+                ageInput.remove();
+              },400)
               personaje.classList.add('opacity0', 'personajeAbajo');
               personaje.classList.remove('opacity0');
-              ageInput.style.animation = 'big-zoom .4s ease-out forwards';
               pergamino.classList.add('pergaminoArriba');
               maquinaEscribir(" ", true);
               swichPergamino();
@@ -91,13 +112,21 @@ function ruleta(){
       div.addEventListener('click', function() {
         div.classList.add('cartaFlip')
         me.lineage = e
+        setTimeout(()=>{
+          contenedorFlotante.classList.remove('patinarAlCentro')
+          div.style.animation = 'big-zoom .4s ease-out forwards'
+          setTimeout(() => {
+            contenedorFlotante.remove()
+          }, 400);
+        },2000)
         console.log(me.lineage);
       });
-      contenedorFlotante.appendChild(div); // Ajusta según tu necesidad
+      contenedorFlotante.appendChild(div)
       document.body.appendChild(contenedorFlotante)
+      setTimeout(()=>{
+        contenedorFlotante.classList.add('patinarAlCentro')
+      },400)
     });
-
-
   },3000)
 }
 
@@ -119,6 +148,14 @@ function swichPergamino(){
   }
 }
 
+function elegirFamilia(){
+  setTimeout(()=>{
+    maquinaEscribir('Ahora, elige dos cartas; ellas revelarán los apellidos que te acompañarán en tu travesía mágica.',true)
+    setTimeout(()=>{
+      'Selecciona con sabiduría, pues tus apellidos te guiarán en tu viaje hacia el conocimiento y la magia.'
+    },2000)
+  },2500)
+}
 
 function maquinaEscribir(texto, clean = false) {
   if (clean) {
@@ -142,7 +179,6 @@ function maquinaEscribir(texto, clean = false) {
   }, 50);
   textoMaquina.innerHTML += '<br>';
 }
-
 
 
 

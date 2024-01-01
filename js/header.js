@@ -1,8 +1,6 @@
-const bgAudio = document.getElementById('bgAudio');
+import { startButton, title} from './audio.js';
+
 const bgVideo = document.getElementById('bgVideo');
-const muteButton = document.getElementById('muteButton');
-const startButton = document.getElementById('start');
-const title = document.getElementsByTagName('h1')[0];
 const headerWindow = document.getElementsByTagName('header')[0];
 const playWindow = document.getElementById('play');
 
@@ -19,9 +17,3 @@ startButton.addEventListener('click',()=>{
     },3000)
 })
 
-
-/* funcion audio activated */
-muteButton.addEventListener('click', function() {
-    bgAudio.muted = !bgAudio.muted;
-    bgAudio.muted ? muteButton.innerHTML = `<i class='bx bx-volume-mute' ></i>` : muteButton.innerHTML = `<i class='bx bx-volume-full' ></i>` 
-});
