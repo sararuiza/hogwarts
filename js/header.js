@@ -2,7 +2,7 @@ import { startButton, title} from './audio.js';
 
 const bgVideo = document.getElementById('bgVideo');
 const headerWindow = document.getElementsByTagName('header')[0];
-const playWindow = document.getElementById('play');
+export const playWindow = document.getElementById('play');
 
 /* FUncion boton start */
 startButton.addEventListener('click',()=>{

@@ -1,3 +1,5 @@
+import { playWindow } from './header.js'
+
 // SELECTORES 
 const rollo = document.querySelectorAll(".rollo");
 const personaje = document.querySelector('.personaje')
@@ -13,7 +15,7 @@ const div = document.createElement('div');
 let me = {
   name: undefined,
   age: undefined,
-  family: undefined,
+  family: '',
   qualities: undefined,
   lineage: undefined,
   house: undefined,
@@ -40,11 +42,8 @@ function desordenar(array){
   array = array.sort(function() {return Math.random() - 0.5});
 }
 
-linagesDesorden = desordenar(linages)
-
 inputText.placeholder = 'Mi nombre es...';
 inputText.classList.add('input');
-
 
 start.addEventListener("click", () => {
   setTimeout(() => {
@@ -82,9 +81,8 @@ start.addEventListener("click", () => {
               personaje.classList.add('opacity0', 'personajeAbajo');
               personaje.classList.remove('opacity0');
               pergamino.classList.add('pergaminoArriba');
-              maquinaEscribir(" ", true);
               swichPergamino();
-              ruleta();
+              linaje();
             }
           });
         }, 400);
@@ -92,23 +90,19 @@ start.addEventListener("click", () => {
     }, 2000);
   }, 3000);
 });
-// Función para validar solo números en el input de edad
 
-function elegirCarta(){
-    swichPergamino()
-}
-
-function ruleta(){
-  setTimeout(()=>{
-    maquinaEscribir('Elige una de las 3 cartas...',true)
+function linaje(){
+  setTimeout(()=>{ 
+    maquinaEscribir('Elige una de las 3 cartas para definir tu linaje...',true)
     const contenedorFlotante = document.createElement('div')
     contenedorFlotante.classList.add('contenedorFilas')
+    desordenar(linages)
     linages.forEach(e => {
       const div = document.createElement('div');
       const h4 = document.createElement('h4')
       div.appendChild(h4)
       div.classList.add('carta')
-      h4.textContent = `${e}`; // Contenido para identificar cada div
+      h4.textContent = `${e}`; 
       div.addEventListener('click', function() {
         div.classList.add('cartaFlip')
         me.lineage = e
@@ -117,6 +111,7 @@ function ruleta(){
           div.style.animation = 'big-zoom .4s ease-out forwards'
           setTimeout(() => {
             contenedorFlotante.remove()
+            elegirFamilia()
           }, 400);
         },2000)
         console.log(me.lineage);
@@ -131,6 +126,7 @@ function ruleta(){
 }
 
 function swichPergamino(){
+  maquinaEscribir(' ',true)
   if(textoArea.classList.contains("textoAbierto")){
     textoArea.classList.remove("textoAbierto");
     rollo[1].classList.remove("rolloCerrado");
@@ -149,12 +145,48 @@ function swichPergamino(){
 }
 
 function elegirFamilia(){
+  swichPergamino()
   setTimeout(()=>{
     maquinaEscribir('Ahora, elige dos cartas; ellas revelarán los apellidos que te acompañarán en tu travesía mágica.',true)
-    setTimeout(()=>{
-      'Selecciona con sabiduría, pues tus apellidos te guiarán en tu viaje hacia el conocimiento y la magia.'
-    },2000)
-  },2500)
+    setTimeout(() => {
+      setTimeout(()=>{
+        maquinaEscribir('Selecciona con sabiduría, pues tus apellidos te guiarán en tu viaje hacia el conocimiento y la magia.',true)
+        const contenedorFlotante = document.createElement('div')
+        contenedorFlotante.classList.add('contenedorFilas')
+        apellidosHarryPotter.forEach(e => {
+          const div = document.createElement('div');
+          const h4 = document.createElement('h4')
+          div.appendChild(h4)
+          div.classList.add('carta')
+          h4.textContent = `${e}`; // Contenido para identificar cada div
+          div.addEventListener('click', function() {
+            div.classList.add('cartaFlip')
+            me.family += e
+            setTimeout(() => {
+              div.style.animation = 'big-zoom .4s ease-out forwards'
+            }, 2000);
+            if(me.family.length > 10){
+              setTimeout(()=>{
+                setTimeout(() => {
+                contenedorFlotante.classList.remove('patinarAlCentro')
+                  contenedorFlotante.remove()
+                  console.log(me.family)
+                  valores()
+                }, 400);
+              },2000)
+            }else{
+              me.family += ' '
+            }
+          });
+          contenedorFlotante.appendChild(div)
+        });
+        document.body.appendChild(contenedorFlotante)
+        setTimeout(()=>{
+          contenedorFlotante.classList.add('patinarAlCentro')
+        },400)
+      },3000)
+    }, 4000);
+  },3000)
 }
 
 function maquinaEscribir(texto, clean = false) {
@@ -180,6 +212,145 @@ function maquinaEscribir(texto, clean = false) {
   textoMaquina.innerHTML += '<br>';
 }
 
+function valores(){
+  let listaValor = [ ]
+  swichPergamino()
+  setTimeout(()=>{
+    maquinaEscribir('Frente a ti se encuentran tres cartas mágicas.',true);
+    setTimeout(() => {
+      maquinaEscribir('Cada carta representa un valor fundamental en la magia.');
+      setTimeout(() => {
+        maquinaEscribir('Deseo que elijas aquella que más resuene contigo...', true)
+        me.lineage == 'sangre pura' ? listaValor = ['determinacion','valor','paciencia'] : listaValor = ['valor','lealtad','creatividad']
+        const contenedorFlotante = document.createElement('div')
+        contenedorFlotante.classList.add('contenedorFilas')
+        listaValor.forEach(e =>{
+          const div = document.createElement('div');
+          div.classList.add('carta')
+          div.classList.add('cartaFlip')
+          const h4 = document.createElement('h4');
+          h4.style.color = '#000'
+          h4.textContent = `${e}`; 
+          div.appendChild(h4)
+          contenedorFlotante.appendChild(div)
+          document.body.appendChild(contenedorFlotante)
+          contenedorFlotante.classList.add('patinarAlCentro')
+          div.addEventListener('click',()=>{
+            div.style.animation = 'big-zoom .7s ease-out forwards'
+            me.qualities = e
+            if (e == 'determinacion'){
+              me.house = 'Slytherin'
+            }else if(e == 'valor'){
+              me.house = 'Gryffindor'
+            }else if(e == 'paciencia'){
+              me.house = 'Hufflepuff'
+            }else{
+              me.house = 'Ravenclaw'
+            }
+            console.log(me.qualities)
+            setTimeout(() => {
+              contenedorFlotante.classList.remove('patinarAlCentro')
+              contenedorFlotante.remove()
+              personaje.classList.add('dissapear');
+              setTimeout(()=>{
+                personaje.classList.remove('dissapear', 'personajeAbajo');
+                pergamino.classList.remove('pergaminoArriba');
+                maquinaEscribir('Es hora de que seas asignado a una de las casas de Hogwarts...',true)
+                setTimeout(()=>{
+                  maquinaEscribir('El Sombrero Seleccionador evaluará tus elecciones y determinará dónde perteneces mejor.')
+                  setTimeout(()=>{
+                    maquinaEscribir('Confía en su elección y que la magia guíe tu destino...',true)
+                    setTimeout(()=>{
+                      personaje.classList.add('dissapear');
+                      elegirCasa()
+                    },6000)
+                  },6000)
+                },6000)
+              },4000)
+            }, 500);
+          })
+        })
 
+      }, 3000);
+    }, 3000);
+  },3000)
+}
 
+function elegirCasa(){
+  swichPergamino()
+  personaje.classList.remove('dissapear');
+  playWindow.classList.remove('appear')
+  setTimeout(()=>{
+    personaje.style.backgroundImage = 'url("../media/personajes/sortingHat.gif")'
+    playWindow.classList.add('appear')
+    maquinaEscribir(`¡Saludos , ${me.name}!...`,true)
+    document.getElementsByClassName('play')[0].style.backgroundImage = 'url(../media/personajes/scena-1.jpg)'
+    setTimeout(()=>{
+      maquinaEscribir(`${me.age} años ¡ehh!? ¿Qué secretos oculta tu juventud, joven hechicero/a?...`, true);
+      setTimeout(()=>{
+        maquinaEscribir(`Veo mucha ${me.qualities}...`, true);
+        setTimeout(()=>{
+          maquinaEscribir('Interesante...')
+          setTimeout(()=>{
+            maquinaEscribir('Te voy a asignar a...')
+            maquinaEscribir(' ',true)
+            setTimeout(()=>{
+              const sign = document.createElement('h4')
+              sign.textContent = me.house
+              sign.classList.add('sign')
+              document.body.appendChild(sign)
+              setTimeout(()=>{
+                finallyResults()
+              },4000)
+            },3000)
+          },3000)
+        },3000)
+      },6000)
+    },3000)
+  },3000)
+}
 
+function finallyResults(){
+  swichPergamino()
+  personaje.classList.add('dissapear');
+  playWindow.classList.remove('appear')
+  setTimeout(()=>{
+    personaje.classList.remove('dissapear');
+    playWindow.classList.add('appear')
+    document.getElementsByClassName('play')[0].style.backgroundImage = 'url(../media/personajes/scena-3.png)'
+    personaje.style.backgroundImage = 'url("../media/personajes/albus-512.png")'
+    pergamino.style.height = '70vh'
+    pergamino.style.width = '80vw'
+    maquinaEscribir('Bienvenido, este es tu folio...',true)
+    setTimeout(()=>{
+      maquinaEscribir(`Nombre: ${me.name}`)
+      setTimeout(()=>{
+        maquinaEscribir(`Edad: ${me.age}`)
+        setTimeout(()=>{
+          maquinaEscribir(`Linaje: ${me.lineage}`)
+          setTimeout(()=>{
+            maquinaEscribir(`Familia: ${me.family}`)
+            setTimeout(()=>{
+              maquinaEscribir(`Cualidades: ${me.qualities}`)
+              setTimeout(()=>{
+                maquinaEscribir(`Casa: ${me.house}`)
+                setTimeout(()=>{
+                  maquinaEscribir('Te espera un 2024 lleno de retos en Riwi-Hogwarts... Que la disciplina te acompañe...',true)
+                  setTimeout(()=>{
+                    const sign = document.createElement('h4')
+                    sign.textContent = 'Fin'
+                    sign.classList.add('sign')
+                    document.body.appendChild(sign)
+                    setTimeout(()=>{
+                      playWindow.classList.remove('appear')
+                    },1500)
+                  },5000)
+                },6000)
+              },1500)
+            },1500)
+          },1500)
+        },1500)
+      },1500)
+    },2000)
+  })
+}

@@ -17,8 +17,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: 1s ease;
+  transition: 3s ease-in-out;
   z-index: 0;
+}
+
+.disappear{
+  opacity: 0;
 }
 
 .appear{
@@ -31,17 +35,16 @@
   width: 20vw;
   top: 10%;
   left: 10%;
+  opacity: 1;
   position: absolute;
   align-self: flex-start;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
   margin-left: 10%;
-  transition: .3s ease-in;
+  transition: .4s ease-in;
   z-index: 3;
 }
-
-
 
 .personajeAbajo{
   top: unset;
@@ -202,17 +205,19 @@ input::placeholder{
 
 
 .contenedorFilas{
-  top: 0;
+  top: 15%;
   left: -100vw;
   position: absolute;
-  height: 100vh;
-  width: 100vw;
+  height: 60vh;
+  width: 90vw;
+  padding: 5%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  transition: .5s ease-in-out;
-  gap: 3rem;
+  transition: 1s ease-in-out;
+  gap: 1rem;
   z-index: 30;
 }
 .patinarAlCentro{
@@ -221,15 +226,15 @@ input::placeholder{
 
 .carta{
   position: relative;
-  width: 22vw;
-  height: 15vw;
+  width: 15vw;
+  height: 10vw;
   display: flex;
   justify-content: center;
   text-transform: capitalize;
   align-items: center;
-  background-color: #eecf97;
-  font-size: calc(2vw + 1vw);
-  box-shadow: inset 0 0 2rem 1rem var(--color2);
+  background-color: #eed7ad;
+  font-size: calc(1.5vw + 1vw);
+  box-shadow: inset 0 0 2rem 1rem var(--color3);
   cursor: pointer;
   transform: rotateY(180deg);
   transform-style: preserve-3d;
@@ -247,6 +252,22 @@ input::placeholder{
 
 .cartaFlip{
   transform: rotateY(0deg) rotateZ(360deg);
+}
+
+.sign{
+  position: absolute;
+  transform-origin: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  color: var(--color2);
+  font-family: font;
+  font-size: 3rem;
+  animation: big-zoom 5s ease-in-out forwards;
+  text-shadow: .1rem 0 .1rem var(--color3), 
+              -.1rem 0 .2rem var(--color3),
+              0 .1rem .1rem var(--color3),
+              0 -.1rem .1rem var(--color3);
+  z-index: 85;
 }
 
 
